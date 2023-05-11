@@ -30,15 +30,28 @@ const AdminTableRow = ({id, brand, description, image, price}) => {
     
 
   return (
-    <tr>
-          <td className={styles.adminCell}>{brand}</td>
-          <td className={styles.adminCell}>{description}</td>
-          <td className={styles.adminCell}>{id}</td>
-          <td className={styles.adminCell}><img src={image} alt="img" id={styles.adminImage}/></td>
-          <td className={styles.adminCell}>{price}</td>
-          <td className={styles.adminCell}><button className={styles.adminButton}><Link to={`/editProd/${id}`}>Edit</Link></button></td>
-          <td className={styles.adminCell}><button className={styles.adminButton} onClick={HandleDelete}>Delete</button></td>
-    </tr>
+    <div className={styles.indiDiv}>
+      <div className={styles.imagediv}><img src={image} alt="image" /></div>
+      <div className={styles.detailsdiv}>
+        <p>{`Brand: ${brand}`}</p>
+        <p>{`Description: ${description}`}</p>
+        <p>{`Id: ${id}`}</p>
+        <p>{`Price: ${price}`}</p>
+        <div id={styles.btndiv}>
+          <button className={styles.adminButton} id={styles.editbtn}><Link to={`/editProd/${id}`} >Edit</Link></button>
+          <button className={styles.adminButton} onClick={HandleDelete} id={styles.deletebtn}>Delete</button>
+        </div>
+      </div>
+    </div>
+    // <tr>
+    //       <td className={styles.adminCell}>{brand}</td>
+    //       <td className={styles.adminCell}>{description}</td>
+    //       <td className={styles.adminCell}>{id}</td>
+    //       <td className={styles.adminCell}><img src={image} alt="img" id={styles.adminImage}/></td>
+    //       <td className={styles.adminCell}>{price}</td>
+    //       <td className={styles.adminCell}><button className={styles.adminButton}><Link to={`/editProd/${id}`}>Edit</Link></button></td>
+    //       <td className={styles.adminCell}><button className={styles.adminButton} onClick={HandleDelete}>Delete</button></td>
+    // </tr>
   )
 }
 
