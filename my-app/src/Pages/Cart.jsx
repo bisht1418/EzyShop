@@ -72,10 +72,13 @@ const Cart = () => {
           p={"20px"}
           boxShadow="rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
         >
-          <Text className={styles.shopCart}> Shopping Cart</Text>
-          <span className={styles.deselect} onClick={handleSelect}>
+          <Text className={styles.shopCart} mb={"20px"}>
+            {" "}
+            Shopping Cart
+          </Text>
+          {/* <span className={styles.deselect} onClick={handleSelect}>
             Deselect all items
-          </span>
+          </span> */}
           <p className={styles.right}>Price</p>
           <hr />
           <br />
@@ -322,7 +325,7 @@ const Cart = () => {
                           className={styles.cartbtn}
                           onClick={() => handleAdd(el)}
                         >
-                          <Toster/>
+                          <Toster />
                         </button>
                       </GridItem>
                     </Grid>

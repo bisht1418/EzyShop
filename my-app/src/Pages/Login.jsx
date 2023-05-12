@@ -19,46 +19,45 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import {useDispatch} from 'react-redux'
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { ChangeUserAuthStatusAction, checkUser } from "../Redux/AuthReducer/action";
+
+let initial = {
+  Email: "",
+  Password: "",
+};
 
 export default function Login() {
   const navigate = useNavigate();
+  let dispatch=useDispatch()
   const [showPassword, setShowPassword] = useState(false);
-
   const [submitButton, setSubmitButton] = useState(false);
-
   const [errorMsg, setErrorMsg] = useState("");
 
   const [showError, setShowError] = useState(false);
 
-  const [values, setValues] = useState({
-    Email: "",
-    Password: "",
-  });
+  const [values, setValues] = useState(initial);
 
   const handleSubmit = () => {
     if (!values.Email || !values.Password) {
-      setShowError(true);
-      setErrorMsg("*Fill all fiels");
+      alert("*Fill all fiels");
       return;
     }
-    setShowError(false);
-    setErrorMsg("");
-    setSubmitButton(true);
-
-    signInWithEmailAndPassword(auth, values.Email, values.Password)
-      .then(async (res) => {
-        setSubmitButton(false);
-
+    let result = checkUser(values);
+    if (result) {
+      alert("Login Succesfully");
+      localStorage.setItem("isAuth", true);
+      localStorage.setItem("name", result);
+      ChangeUserAuthStatusAction(dispatch);
+      dispatch({ type: "USER_NAME_STATUS", payload: result });
+      setTimeout(() => {
         navigate("/");
-      })
-      .catch((err) => {
-        setSubmitButton(false);
-        setShowError(true);
-        
-        setErrorMsg(err.message);
-        // console.log("Error:", err.message);
-      });
+      }, 1000);
+    } else {
+      alert("wrong credentials");
+    }
+    setValues(initial);
   };
 
   return (
@@ -95,6 +94,7 @@ export default function Login() {
                 <FormLabel>Email address</FormLabel>
                 <Input
                   type="email"
+                  value={values.Email}
                   onChange={(e) =>
                     setValues((prev) => ({ ...prev, Email: e.target.value }))
                   }
@@ -104,6 +104,7 @@ export default function Login() {
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
                   <Input
+                    value={values.Password}
                     type={showPassword ? "text" : "password"}
                     onChange={(e) =>
                       setValues((prev) => ({

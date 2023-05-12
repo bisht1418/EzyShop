@@ -12,9 +12,9 @@ const ProductList = () => {
 
   const { isLoading } = useSelector((store) => store.ShoesReducer);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getShoesDataAction);
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getShoesDataAction);
+  // }, []);
 
   if (isLoading) {
     return (

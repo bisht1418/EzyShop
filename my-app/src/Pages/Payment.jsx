@@ -18,8 +18,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo.png";
 
-
-
 // import img from '../logo/Ezyshop.jpeg'
 const Payment = () => {
   const [show, setshow] = useState(false);
@@ -27,6 +25,7 @@ const Payment = () => {
   const [main, setmain] = useState(false);
   const [color, setcolor] = useState(0);
   const [showpayment, setshowpayment] = useState(false);
+  let [number, setnumber] = useState("");
   let handlebg = (e) => {
     setcolor(e.target.value);
   };
@@ -35,6 +34,10 @@ const Payment = () => {
   const [submit, setsubmit] = useState(false);
   let handleSubmit = (e) => {
     e.preventDefault();
+    if (number.length < 10) {
+      alert("please enter proper number");
+      return;
+    }
     alert("Details has been submited");
     setshowpayment(true);
     setsubmit(true);
@@ -59,7 +62,7 @@ const Payment = () => {
         alignItems={"center"}
       >
         <Text>
-          <Image src={logo} style={{width:"50px", height:"50px"}}/>
+          <Image src={logo} style={{ width: "50px", height: "50px" }} />
         </Text>
         <Text fontWeight={500} fontSize={"28px"} lineHeight={"36px"}>
           Checkout
@@ -115,9 +118,20 @@ const Payment = () => {
             </Text>
             <Input isRequired border={"1px solid #888c8c"} h={"30px"}></Input>
             <Text className={styles.samePaymet}>Mobile number</Text>
-            <Input isRequired border={"1px solid #888c8c"} h={"30px"}></Input>
+            <Input
+              isRequired
+              border={"1px solid #888c8c"}
+              onChange={(e) => setnumber(e.target.value)}
+              type="number"
+              h={"30px"}
+            ></Input>
             <Text className={styles.samePaymet}>Pincode</Text>
-            <Input isRequired border={"1px solid #888c8c"} h={"30px"}></Input>
+            <Input
+              isRequired
+              border={"1px solid #888c8c"}
+              h={"30px"}
+              type="number"
+            ></Input>
             <Text className={styles.samePaymet}>
               Flat, House no., Building, Company, Apartment
             </Text>
@@ -279,7 +293,11 @@ const Payment = () => {
                 placeholder="Provide detail such as building description, a nearby lanmark ,or other navigation instruction"
               ></Textarea>
             </Box>
-            <button type="submit" className={styles.PaymenUsebtn}>
+            <button
+              type="submit"
+              className={styles.PaymenUsebtn}
+              style={{ width: "50%" }}
+            >
               Use this adress
             </button>
           </form>

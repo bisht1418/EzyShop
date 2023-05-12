@@ -14,9 +14,9 @@ const WomenShoesList = () => {
   const { isLoading } = useSelector((store) => store.WomenShoesReducer);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getWomenShoesDataAction());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getWomenShoesDataAction());
+  // }, []);
 
   if (isLoading) {
     return (
