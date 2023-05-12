@@ -19,6 +19,10 @@ export const getSearchDataAction =
         .then((res) => {
           dispatch({ type: GET_SEARCH_REQUEST_SUCCESSFUL, payload: res.data });
         })
-        .catch(() => dispatch({ type: SEARCH_DATA_FAILURE }));
+        .catch(() =>{
+          dispatch({ type: SEARCH_DATA_FAILURE })
+        } );
     }
   };
+
+  

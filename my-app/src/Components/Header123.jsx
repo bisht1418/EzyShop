@@ -9,8 +9,10 @@ import logo from "../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../firebase";
 import Shoes from "../Pages/Shoes";
-import { ChangeUserAuthStatusAction } from "../Redux/AuthReducer/action";
+import { ChangeUserAuthStatusAction, LogoutAction } from "../Redux/AuthReducer/action";
 import PlacementExample from "./PlacementExample";
+
+
 
 const Headerstylecont = Styled.div`
     height:80px;
@@ -50,6 +52,7 @@ const Header123 = () => {
   // const [name, setName] = useState("");
   const dispatch = useDispatch();
   let { name, isAuth } = useSelector((state) => state.AuthReducer);
+  console.log(isAuth);
   useState(() => {
     // auth.onAuthStateChanged((user) => {
     //   console.log(user.displayName);
@@ -59,6 +62,10 @@ const Header123 = () => {
     //   }
     // });
   }, []);
+
+  const HandleLogout = ()=>{
+    dispatch(LogoutAction) 
+  }
 
   // useEffect(() => {
   //   dispatch(ChangeUserAuthStatusAction);
@@ -80,7 +87,7 @@ const Header123 = () => {
         </div>
         <div className={styles.header_location}>
           <div className={styles.header_locationlineone}>
-            <p>{isAuth ? `Welcome ${name}` : "Deliver to name"}</p>
+            <p>{isAuth ? `Welcome ${name}` : ""}</p>
           </div>
           {/* <div className={styles.header_locationlineone}>
             <LocationOnIcon />
@@ -174,19 +181,23 @@ const Header123 = () => {
             </div>
           </span>
         </div>
+        {isAuth?<button style={{color:"white"}} onClick={HandleLogout}>Logout</button> : 
+        <>
         <div className={styles.header_option}>
           <span className={styles.header_optionlineone}>Returns</span>
           <span className={styles.header_optionlinetwo}>Orders</span>
         </div>
-        <div className={styles.header_option}>
-          <span className={styles.header_optionlineone}>Your</span>
-          <span className={styles.header_optionlinetwo}>Prime</span>
+        <div className={styles.header_option}>          
+            <span className={styles.header_optionlineone}>Your</span>
+            <span className={styles.header_optionlinetwo}>Prime</span>
         </div>
+        </>
+        }
         <div className={styles.header_optionbasket}>
           <Link to="/cart">
             <AddShoppingCartIcon className={styles.header_optionbasket} />
           </Link>
-          <span className={styles.header_optioncount}>{cartLength}</span>
+          <span className={styles.header_optioncount}>{isAuth?cartLength:""}</span>
         </div>
       </div>
     </Headerstylecont>

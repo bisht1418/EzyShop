@@ -8,6 +8,7 @@ import {
 
 export const getWomenShoesDataAction = (dispatch, obj) => {
   let url = "https://server22-for-amazon-clone.onrender.com/Women_Shoes";
+  dispatch({type: WOMEN_REQUEST_PENDING})
 
   axios
     .get("https://server22-for-amazon-clone.onrender.com/Women_Shoes", {

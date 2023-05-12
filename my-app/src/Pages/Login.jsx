@@ -46,7 +46,7 @@ export default function Login() {
     }
     let result = checkUser(values);
     if (result) {
-      alert("Login Succesfully");
+      alert("Login Succesfull");
       localStorage.setItem("isAuth", true);
       localStorage.setItem("name", result);
       ChangeUserAuthStatusAction(dispatch);

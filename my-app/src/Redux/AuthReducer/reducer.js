@@ -1,7 +1,7 @@
-import { USER_AUTH_STATUS } from "./actionTypes";
+import { USER_AUTH_STATUS, USER_LOGOUT } from "./actionTypes";
 
 let initial = {
-  isAuth: localStorage.getItem("isAuth") || false,
+  isAuth: JSON.parse(localStorage.getItem("isAuth")) || false,
   name: localStorage.getItem("name") || "",
 };
 export let reducer = (state = initial, { type, payload }) => {
@@ -10,6 +10,9 @@ export let reducer = (state = initial, { type, payload }) => {
       return { ...state, isAuth: true };
     case "USER_NAME_STATUS": {
       return { ...state, name: payload };
+    }
+    case USER_LOGOUT : {
+      return {...state, isAuth: false, name: ""}
     }
     default:
       return state;

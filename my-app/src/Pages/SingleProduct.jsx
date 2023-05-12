@@ -320,7 +320,7 @@ const SingleProduct = () => {
               display="inline-block"
               onChange={handleChangeSingle}
             >
-              <option>--Select--</option>
+              {/* <option>--Select--</option> */}
               <option value={1}>Qty: 1</option>
               <option value={2}>Qty: 2</option>
               <option value={3}>Qty: 3</option>

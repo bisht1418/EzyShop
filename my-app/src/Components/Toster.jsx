@@ -8,8 +8,8 @@ function Toster() {
       style={{width:"100%"}}
       onClick={() =>
         toast({
-          title: "congratulations",
-          description: "Product has been added",
+          title: "Congratulations",
+          description: "The product has been added to your cart.",
           status: "success",
           duration: 9000,
           isClosable: true,

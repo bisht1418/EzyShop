@@ -74,7 +74,7 @@ export default function PlacementExample() {
             style={{ color: "black" }}
             onClick={() => console.log("Neeraj")}
           />
-          <DrawerHeader>{`Search Product...`}</DrawerHeader>
+          {/* <DrawerHeader>{`Search Product...`}</DrawerHeader> */}
 
           {isLoading ? (
             <>
@@ -149,11 +149,13 @@ export default function PlacementExample() {
                     }}
                     gap={{ base: 2, md: 2 }}
                   >
-                    {products?.map((product, index) => (
+                    {products.length>0?products.map((product, index) => (
                       <GridItem key={product.id} colSpan={1}>
                         <SearchCard key={product.id} {...product} />
                       </GridItem>
-                    ))}
+                    )):
+                    <div style={{textAlign:"center"}}><h1 style={{fontWeight:"bolder"}}>Search Something</h1></div>
+                    }
                   </Grid>
                 </>
               </DrawerBody>

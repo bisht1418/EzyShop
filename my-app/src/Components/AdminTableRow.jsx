@@ -25,6 +25,8 @@ const AdminTableRow = ({id, brand, description, image, price}) => {
         dispatch(deleteShoeDataAction(id)).finally(()=>dispatch(getShoesDataforAdminAction))
     }
 
+   
+
   
 
     
@@ -38,7 +40,8 @@ const AdminTableRow = ({id, brand, description, image, price}) => {
         <p>{`Id: ${id}`}</p>
         <p>{`Price: ${price}`}</p>
         <div id={styles.btndiv}>
-          <button className={styles.adminButton} id={styles.editbtn}><Link to={`/editProd/${id}`} >Edit</Link></button>
+          
+          <button className={styles.adminButton} id={styles.editbtn}><Link to={`/editProd/${id}`} >Edit</Link></button> 
           <button className={styles.adminButton} onClick={HandleDelete} id={styles.deletebtn}>Delete</button>
         </div>
       </div>
