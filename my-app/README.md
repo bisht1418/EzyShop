@@ -36,7 +36,6 @@ Ezyshop is a clone of Amazon which is made by a group of 5 members in a span of 
         <li>React</li>
         <li>Chakra UI</li>
         <li>React-Redux</li>
-        <li>Firebase</li>
         <li>Reqres</li>
         <li>CSS</li>
 </ul>
