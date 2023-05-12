@@ -2,7 +2,7 @@
 
 This is a clone of Amazon.com, which is the one of the world's largest online ecommerce websites.
 
-<h3>Live Link: https://my-app-lake-iota.vercel.app/</h3> 
+<h3>Live Link: https://ezyshop.vercel.app/</h3> 
 
 
 <h3>About the Project:</h3>
