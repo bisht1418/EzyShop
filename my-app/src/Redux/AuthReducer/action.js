@@ -1,4 +1,4 @@
-import { USER_AUTH_STATUS } from "./actionTypes";
+import { USER_AUTH_STATUS, USER_LOGOUT } from "./actionTypes";
 
 export const ChangeUserAuthStatusAction = (dispatch) => {
   dispatch({ type: USER_AUTH_STATUS });
@@ -20,3 +20,8 @@ export let checkUser = (obj) => {
   });
   return flag;
 };
+
+export const LogoutAction = (dispatch)=>{
+  dispatch({type : USER_LOGOUT})
+  
+}

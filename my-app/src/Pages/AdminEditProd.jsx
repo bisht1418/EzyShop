@@ -5,13 +5,15 @@ import { getShoesDataforAdminAction, patchShoeAction } from '../Redux/ShoesReduc
 import styles from "../Styling/Admin.module.css"
 import AdminNav from '../Components/AdminNav'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+
 
 
 
 const AdminEditProd = () =>{
 
     const {id} = useParams()
+    const Navigate = useNavigate()
 
     const [dataobj, setdataobj] = useState("")
     const dispatch = useDispatch()
@@ -33,16 +35,20 @@ const AdminEditProd = () =>{
             return {...prev, [name]:value}
         })
     }
-
-
-    const HandleEditProduct = ()=>{
+    
+    
+    const HandleEditProduct = (e)=>{
+        e.preventDefault()
         // console.log(dataobj)
-        dispatch(patchShoeAction(dataobj, id))
+        
+        dispatch(patchShoeAction(dataobj, id)).finally(()=>dispatch(getShoesDataforAdminAction))
+        alert("Product Edited")
+        Navigate("/adminProducts")
     }
 
-    useEffect(()=>{
-        dispatch(getShoesDataforAdminAction)
-    },[patchShoeAction])
+    // useEffect(()=>{
+    //     dispatch(getShoesDataforAdminAction)
+    // },[patchShoeAction])
 
   return (
     <div className={styles.adminDiv}>

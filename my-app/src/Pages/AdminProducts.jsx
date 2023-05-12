@@ -13,6 +13,7 @@ const AdminProducts = () => {
 
     const dispatch = useDispatch()
     const shoesdata = useSelector(store=>store.ShoesReducer.adminShoes)
+    const isLoading = useSelector(store=>store.ShoesReducer.isLoading)
        
     
 
@@ -27,7 +28,9 @@ const AdminProducts = () => {
     <div id={styles.adminDiv} className={styles.adminDiv}>
         <AdminNav />
         <div className={styles.ProductsParentDiv}>
-            {shoesdata.map((item)=><AdminTableRow key={item.id} {...item}/>)}
+            {isLoading?<h1 style={{fontWeight:"bolder", fontSize:"80px"}}>Loading...</h1>:
+            shoesdata.map((item)=><AdminTableRow key={item.id} {...item}/>)
+            }
         </div>
         {/* <table id={styles.adminTable}>
             <thead>

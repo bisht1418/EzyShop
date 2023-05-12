@@ -35,10 +35,10 @@ const Payment = () => {
   let handleSubmit = (e) => {
     e.preventDefault();
     if (number.length < 10) {
-      alert("please enter proper number");
+      alert("Please enter a valid Mobile number.");
       return;
     }
-    alert("Details has been submited");
+    alert("Details have been submitted.");
     setshowpayment(true);
     setsubmit(true);
   };

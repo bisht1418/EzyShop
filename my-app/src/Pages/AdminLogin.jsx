@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from "../Styling/Admin.module.css"
 import { Link } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -34,17 +34,28 @@ const AdminLogin = () => {
     const dispatch = useDispatch()
     const Navigate = useNavigate()
     const AdminAuth = useSelector((store)=>store.AdminReducer.isAdminAuth)
-    
+    const loginFailed = useSelector((store)=>store.AdminReducer.isError)
 
     const HandleSignin = ()=>{
-        let credentialsObj = {
-            username, password
+        const credentialsObj={username, password}
+        if(username=="" || password==""){
+            alert("Invalid credentials.");
+            // return;
         }
+        else{
+            // alert("Login Succesfull");
+            // dispatch(adminloginAction)
+            // Navigate("/adminProducts")
+            dispatch(adminloginAction(credentialsObj)).then(()=>Navigate("/adminProducts"))
+        }
+        
        
-        dispatch(adminloginAction(credentialsObj)).then(()=>Navigate("/adminProducts"))    
       
     }
-    //console.log(AdminAuth)
+
+    
+
+    
 
     return (
         <div className={styles.adminDiv}>
