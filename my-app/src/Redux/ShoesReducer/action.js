@@ -13,6 +13,7 @@ import {
 //Get shoes for product page
 export const getShoesDataAction = (dispatch, obj) => {
   // console.log(obj);
+  dispatch({type: SHOES_REQUEST_PENDING})
   axios
     .get("https://server22-for-amazon-clone.onrender.com/shoes", {
       params: obj,

@@ -22,6 +22,8 @@ export let checkUser = (obj) => {
 };
 
 export const LogoutAction = (dispatch)=>{
+  localStorage.setItem("isAuth", false);
+  localStorage.setItem("name", "");
   dispatch({type : USER_LOGOUT})
   
 }

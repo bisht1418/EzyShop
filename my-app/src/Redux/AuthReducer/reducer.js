@@ -1,7 +1,7 @@
 import { USER_AUTH_STATUS, USER_LOGOUT } from "./actionTypes";
 
 let initial = {
-  isAuth: localStorage.getItem("isAuth") || false,
+  isAuth: JSON.parse(localStorage.getItem("isAuth")) || false,
   name: localStorage.getItem("name") || "",
 };
 export let reducer = (state = initial, { type, payload }) => {
