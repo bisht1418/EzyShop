@@ -26,7 +26,10 @@ const AdminProducts = () => {
   return (
     <div id={styles.adminDiv} className={styles.adminDiv}>
         <AdminNav />
-        <table id={styles.adminTable}>
+        <div className={styles.ProductsParentDiv}>
+            {shoesdata.map((item)=><AdminTableRow key={item.id} {...item}/>)}
+        </div>
+        {/* <table id={styles.adminTable}>
             <thead>
                 <tr>
                     <th className={styles.adminCell}>Brand</th>
@@ -39,7 +42,7 @@ const AdminProducts = () => {
             <tbody>
             {shoesdata.map((item)=><AdminTableRow key={item.id} {...item}/>)}
             </tbody>
-        </table>
+        </table> */}
         
     </div>
   )

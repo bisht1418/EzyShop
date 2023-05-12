@@ -1,5 +1,6 @@
 .adminDiv {
-    background-color: #232f3d;
+    /* background-color: #232f3d; */
+    background-color: rgb(17, 15, 31);
     color: white;
     text-align: center;
 }
@@ -13,7 +14,35 @@
     margin-bottom: 20px;
     background-color: #232f3e;
 }
-#adminTable{
+.indiDiv{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
+    height: 350px;
+    height: fit-content;
+}
+
+.ProductsParentDiv{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 50px;
+}
+.imagediv {
+    height:50%;
+    margin-bottom: 2px;
+}
+.imagediv>img{
+    height: 100%;
+    width:70%;   
+    margin: auto;
+    border-radius: 10px;
+}
+.detailsdiv{
+    width:70%;
+    text-align: left;
+    margin: auto;
+}
+/* #adminTable{
     width: 100%;
     border: 2px solid grey;    
 }
@@ -24,13 +53,29 @@
 .adminCell{
     border: 2px solid grey; 
     width:15%;
+} */
+#btndiv{
+    width:100%;
+    display: flex;
+    justify-content:space-between;
+}
+#deletebtn{
+    background-color: rgb(196, 52, 52);
+}
+#editbtn{
+    background-color: rgb(2, 82, 2);
+}
+#deletebtn, #editbtn{
+    width: 60px;
+    
 }
 .adminButton{
     background-color: #232f3d;
     color: white;
     border: none;
-    margin: 20px;
+    margin: 10px;
     padding: 5px;
+    border-radius: 5px;
 }
 .adminButton:hover{
     color: white;
