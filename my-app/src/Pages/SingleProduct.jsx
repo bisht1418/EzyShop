@@ -31,40 +31,22 @@ const SingleProduct = () => {
     setquan(e.target.value);
   };
   return (
-    <Box m={{ sm: "0px", md: "0px 10px" }}>
+    <Box m={{ sm: "0px", md: "0px 10px" }} p={"20px"}>
       <Box display="flex" justifyContent={"center"} m={"35px 0px"}>
         <Img src="https://m.media-amazon.com/images/I/21G8dTQtvdL.jpg"></Img>
       </Box>
-      <Grid gridTemplateColumns={{ base: "1fr", md: "5% 70% 1fr" }} gap={6}>
-        <GridItem bg={"#f7f7f7"} display={{ base: "none", md: "block" }}>
-          <Text
-            display={"flex"}
-            justifyContent="center"
-            mb={"10px"}
-            p={"10px 0px"}
-            border="1px solid gray"
-            className={styles.hoversingle}
-          >
-            <Img src="https://m.media-amazon.com/images/I/418mML9+A0L._SR38,50_.jpg"></Img>
-          </Text>
-          <Text
-            display={"flex"}
-            justifyContent="center"
-            mt={"20px"}
-            p={"10px 0px"}
-            border="1px solid gray"
-            className={styles.hoversingle}
-          >
-            <Img src="https://m.media-amazon.com/images/I/31P57SebbwL._SR38,50_.jpg"></Img>
-          </Text>
-        </GridItem>
+      <Grid gridTemplateColumns={{ base: "1fr", md: "70% 1fr" }} gap={6}>
         <GridItem>
           <Grid
             gridTemplateColumns={{ sm: "repeat(1,1fr)", md: "repeat(2,1fr)" }}
             columnGap={10}
           >
             <GridItem>
-              <Img src={data.image} height={"20%"} width={"80%"}></Img>
+              <Img
+                src={data.image}
+                height={{ base: "90%", md: "20%" }}
+                width={"80%"}
+              ></Img>
             </GridItem>
             <GridItem>
               <Text className={`${styles.cartGreen} ${styles.cartUnderLine}`}>

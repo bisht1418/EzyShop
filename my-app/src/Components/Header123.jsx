@@ -46,23 +46,23 @@ z-index: 100;
 `;
 
 const Header123 = () => {
-  const [isAuth, setisAuth] = useState(false);
-  const [name, setName] = useState("");
+  // const [isAuth, setisAuth] = useState(false);
+  // const [name, setName] = useState("");
   const dispatch = useDispatch();
-
+  let { name, isAuth } = useSelector((state) => state.AuthReducer);
   useState(() => {
-    auth.onAuthStateChanged((user) => {
-      //console.log(user.displayName);
-      if (user.displayName !== null) {
-        setisAuth(true);
-        setName(user.displayName);
-      }
-    });
+    // auth.onAuthStateChanged((user) => {
+    //   console.log(user.displayName);
+    //   if (user.displayName !== null) {
+    //     setisAuth(true);
+    //     setName(user.displayName);
+    //   }
+    // });
   }, []);
 
-  useEffect(() => {
-    dispatch(ChangeUserAuthStatusAction);
-  }, [isAuth]);
+  // useEffect(() => {
+  //   dispatch(ChangeUserAuthStatusAction);
+  // }, [isAuth]);
 
   // console.log(isAuth);
 
@@ -80,14 +80,14 @@ const Header123 = () => {
         </div>
         <div className={styles.header_location}>
           <div className={styles.header_locationlineone}>
-            <p>{isAuth ? name : "Deliver to name"}</p>
+            <p>{isAuth ? `Welcome ${name}` : "Deliver to name"}</p>
           </div>
-          <div className={styles.header_locationlineone}>
+          {/* <div className={styles.header_locationlineone}>
             <LocationOnIcon />
             <p>
               <span style={{ color: "white", fontWeight: "bold" }}>Place</span>
             </p>
-          </div>
+          </div> */}
         </div>
       </Paragraph>
 

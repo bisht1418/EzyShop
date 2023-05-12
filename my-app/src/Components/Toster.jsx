@@ -8,7 +8,7 @@ function Toster() {
       style={{width:"100%"}}
       onClick={() =>
         toast({
-          title: "Congrulations",
+          title: "congratulations",
           description: "Product has been added",
           status: "success",
           duration: 9000,

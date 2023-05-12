@@ -6,46 +6,30 @@ import {
   POST_WOMEN_REQUEST_SUCCESSFUL,
 } from "./actionTypes";
 
-export const getWomenShoesDataAction =
-  (brands, PriceUnder = [], sortBy) =>
-  (dispatch) => {
-    dispatch({ type: WOMEN_REQUEST_PENDING });
+export const getWomenShoesDataAction = (dispatch, obj) => {
+  let url = "https://server22-for-amazon-clone.onrender.com/Women_Shoes";
 
-    let url = "https://server22-for-amazon-clone.onrender.com/Women_Shoes";
+  axios
+    .get("https://server22-for-amazon-clone.onrender.com/Women_Shoes", {
+      params: obj,
+    })
+    .then((res) => {
+      dispatch({ type: GET_WOMEN_REQUEST_SUCCESSFUL, payload: res.data });
+      // console.log(res.data);
+    })
+    .catch((err) => {
+      dispatch({ type: WOMEN_DATA_FAILURE });
+      console.log(err);
+    });
 
-    /* Filter the data based on the Brand */
-    if (brands && brands.length > 0) {
-      url += `?brand=${brands.join("&brand=")}`;
-    }
-
-    /*Sorting the product based on the price*/
-    if (PriceUnder.length === 2) {
-      if (brands && brands.length > 0) {
-        url += `&price_gte=${PriceUnder[0]}&price_lte=${PriceUnder[1]}`;
-      } else {
-        url += `?price_gte=${PriceUnder[0]}&price_lte=${PriceUnder[1]}`;
-      }
-    }
-
-    /*Sort by asc and desc*/
-    if (sortBy) {
-      if ((brands && brands.length > 0) || PriceUnder.length === 2) {
-        url += `&_sort=price&_order=${sortBy}`;
-      } else {
-        url += `?_sort=price&_order=${sortBy}`;
-      }
-    }
-
-    console.log("urlewrfwewe", url);
-
-    axios
-      .get(url)
-      .then((res) => {
-        console.log("res", res.data);
-        dispatch({ type: GET_WOMEN_REQUEST_SUCCESSFUL, payload: res.data });
-      })
-      .catch(() => dispatch({ type: WOMEN_DATA_FAILURE }));
-  };
+  // axios
+  //   .get(url)
+  //   .then((res) => {
+  //     console.log("res", res.data);
+  //     dispatch({ type: GET_WOMEN_REQUEST_SUCCESSFUL, payload: res.data });
+  //   })
+  //   .catch(() => dispatch({ type: WOMEN_DATA_FAILURE }));
+};
 
 export const postShoesDataAction = (obj) => (dispatch) => {
   dispatch({ type: WOMEN_REQUEST_PENDING });

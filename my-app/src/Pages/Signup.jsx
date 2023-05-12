@@ -17,11 +17,18 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { auth } from "../firebase";
+import { addUser } from "../Redux/AuthReducer/action";
+
+let initial = {
+  first: "",
+  last: "",
+  Email: "",
+  Password: "",
+};
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -33,38 +40,20 @@ export default function Signup() {
 
   const [showError, setShowError] = useState(false);
 
-  const [values, setValues] = useState({
-    Name: "",
-    Email: "",
-    Password: "",
-  });
+  const [values, setValues] = useState(initial);
 
   const handleSubmit = () => {
-    if (!values.Name || !values.Email || !values.Password) {
-      setShowError(true);
-      setErrorMsg("*Fill all fiels");
+    let { first, last, Email, Password } = values;
+    if (!first || !last || !Email || !Password) {
+      alert("*plase Fill all fiels");
       return;
     }
-    setShowError(false);
-    setErrorMsg("");
-    setSubmitButton(true);
-
-    createUserWithEmailAndPassword(auth, values.Email, values.Password)
-      .then(async (res) => {
-        setSubmitButton(false);
-        const user = res.user;
-        await updateProfile(user, {
-          displayName: values.Name,
-        });
-        navigate("/login");
-        // console.log(user);
-      })
-      .catch((err) => {
-        setSubmitButton(false);
-        setShowError(true);
-        setErrorMsg("Already have account with email");
-        // console.log("Error:", err.message);
-      });
+    addUser(values);
+    setValues(initial);
+    alert("Register Succesfully plase login");
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
 
   return (
@@ -94,8 +83,9 @@ export default function Signup() {
                   <FormLabel>First Name</FormLabel>
                   <Input
                     type="text"
+                    value={values.first}
                     onChange={(e) =>
-                      setValues((prev) => ({ ...prev, Name: e.target.value }))
+                      setValues((prev) => ({ ...prev, first: e.target.value }))
                     }
                   />
                 </FormControl>
@@ -105,8 +95,9 @@ export default function Signup() {
                   <FormLabel>Last Name</FormLabel>
                   <Input
                     type="text"
+                    value={values.last}
                     onChange={(e) =>
-                      setValues((prev) => ({ ...prev, Lname: e.target.value }))
+                      setValues((prev) => ({ ...prev, last: e.target.value }))
                     }
                   />
                 </FormControl>
@@ -117,6 +108,7 @@ export default function Signup() {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
+                value={values.Email}
                 onChange={(e) =>
                   setValues((prev) => ({ ...prev, Email: e.target.value }))
                 }
@@ -127,6 +119,7 @@ export default function Signup() {
               <InputGroup>
                 <Input
                   type={showPassword ? "text" : "password"}
+                  value={values.Password}
                   onChange={(e) =>
                     setValues((prev) => ({ ...prev, Password: e.target.value }))
                   }
